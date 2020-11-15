@@ -24,9 +24,14 @@ public:
 	SimpleAnomalyDetector();
 	virtual ~SimpleAnomalyDetector();
 
+	// does not need to be depand on the origin of the information (stream or file...)
+	// shlav makdin
 	virtual void learnNormal(const TimeSeries& ts);
+	// return list of reports. every anomaly report has description and time stamp (nekudat zman)
+	//giloy harigot
 	virtual vector<AnomalyReport> detect(const TimeSeries& ts);
 
+	// returns list of correlated features.
 	vector<correlatedFeatures> getNormalModel(){
 		return cf;
 	}
