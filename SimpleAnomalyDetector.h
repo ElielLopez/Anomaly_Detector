@@ -17,17 +17,21 @@ struct correlatedFeatures{
 	float threshold;
 };
 
-
 class SimpleAnomalyDetector:public TimeSeriesAnomalyDetector{
+
 	vector<correlatedFeatures> cf;
+
 public:
 	SimpleAnomalyDetector();
 	virtual ~SimpleAnomalyDetector();
 
-	// does not need to be depand on the origin of the information (stream or file...)
+	// does not need to be depand on the o
+	// rigin of the information (stream or file...)
 	// shlav makdin
 	virtual void learnNormal(const TimeSeries& ts);
-	// return list of reports. every anomaly report has description and time stamp (nekudat zman)
+
+	// return list of reports.
+	// every anomaly report has description and time stamp (nekudat zman)
 	//giloy harigot
 	virtual vector<AnomalyReport> detect(const TimeSeries& ts);
 
@@ -35,9 +39,6 @@ public:
 	vector<correlatedFeatures> getNormalModel(){
 		return cf;
 	}
-
 };
-
-
 
 #endif /* SIMPLEANOMALYDETECTOR_H_ */

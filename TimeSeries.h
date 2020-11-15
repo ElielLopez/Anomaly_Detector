@@ -15,11 +15,13 @@ class TimeSeries {
 
 private:
     const char* fileName;
-    vector<pair<string,vector<double>>> result;
+
     string line, colName;
     double val;
-// TODO make regular constructor and create another function to save the vector
+
 public:
+    vector<pair<string,vector<double>>> result;
+
     TimeSeries(const char* CSVfileName) {
         this->fileName = CSVfileName;
         saveData(fileName);
