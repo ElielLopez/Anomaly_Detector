@@ -25,10 +25,11 @@ public:
         saveData(fileName);
     }
     void saveData(const char* fileName);
+    void insertValue(vector<float> values);
+    vector<float> getValuesOfFeatures(string feature);
+    vector<float> returnRow(int step);
+    float returnVal(int step, string feature);
 
-    //void insertFeatureAndValue();
-    // return row
-    // given feature- return vector of values
 
     ~TimeSeries();
 };

@@ -16,7 +16,16 @@ using namespace std;
 
 int main(){
 
+    vector<float> testGetValOfFeatures;
+    vector<float> testGetRow;
+    float testVal;
+
+    vector<float> v = {5, 46, 3.5, 120.0};
     TimeSeries ts("csvfile.txt");
+    ts.insertValue(v);
+    testGetValOfFeatures = ts.getValuesOfFeatures("test");
+    testGetRow = ts.returnRow(3);
+    testVal = ts.returnVal(2,"a");
 
     SimpleAnomalyDetector ad;
     ad.learnNormal(ts);
