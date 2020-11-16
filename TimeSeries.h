@@ -6,21 +6,19 @@
 
 using namespace std;
 
-// gets "trainFile1.csv"
-// time series need to hold a table.
-// insert and return features names, add row, load from csv file etc.
-using namespace std;
+typedef map<string, float> featuresAndValues;
 
 class TimeSeries {
 
 private:
+    map<int, string> columnFeature;
+    vector<map<string, float>> data;
     const char* fileName;
-
-    string line, colName;
-    double val;
+    string line, colName, token;
+    int index;
+    float val;
 
 public:
-    vector<pair<string,vector<double>>> result;
 
     TimeSeries(const char* CSVfileName) {
         this->fileName = CSVfileName;
