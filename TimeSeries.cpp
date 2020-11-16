@@ -64,18 +64,9 @@ void TimeSeries::insertValue(vector<float> values) {
 // returns the vector of values of certain feature.
 //    vector<map<string, float>> data;
 // map<int, string> columnFeature
-vector<float> TimeSeries::getValuesOfFeatures(string feature) {
-// ({this, 1, 2, 3, 4, 5})
-    vector<float> valuesVector;
-    int tempIndex = 0;
-    float valToInsert;
+vector<float> TimeSeries::getValuesOfFeatures(string feature) const{
 
-    for(auto it = columnFeature.begin(); it != columnFeature.end(); it++) {
-        if(it->second == feature) {
-            tempIndex = it->first;
-        }
-    }
-// data[0] = [0]:a-1.5,[1]:is-36,[3]:test- 426.5, [4]:this-1
+    vector<float> valuesVector;
 
     for(auto iterator = data.begin(); iterator != data.end(); iterator++) {
         valuesVector.push_back(iterator->at(feature));

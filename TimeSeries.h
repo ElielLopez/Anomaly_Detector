@@ -11,8 +11,7 @@ typedef map<string, float> featuresAndValues;
 class TimeSeries {
 
 private:
-    map<int, string> columnFeature;
-    vector<map<string, float>> data;
+
     const char* fileName;
     string line, colName, token;
     int index;
@@ -20,13 +19,16 @@ private:
 
 public:
 
+    map<int, string> columnFeature;
+    vector<map<string, float>> data;
+
     TimeSeries(const char* CSVfileName) {
         this->fileName = CSVfileName;
         saveData(fileName);
     }
     void saveData(const char* fileName);
     void insertValue(vector<float> values);
-    vector<float> getValuesOfFeatures(string feature);
+    vector<float> getValuesOfFeatures(string feature) const;
     vector<float> returnRow(int step);
     float returnVal(int step, string feature);
 
