@@ -28,14 +28,12 @@ public:
     }
     void saveData(const char* fileName); // Dont change!!
 
-    vector<float> getValues(string featureName);
-    float getVal(string feature, int index);
-
+    vector<float> getValues(string featureName) const;
+    float getVal(string feature, int index) const;
     void insertValuesRow(vector<float> values); // Dont change!!
-    vector<string> returnFeaturesNames();
+    vector<string> returnFeaturesNames() ;
     // TODO create insertFeatureNameIntoData - to insert feature name
-
-    vector<float> returnRow(int step);
+    vector<float> returnRow(int step) const; // TODO- not sure what for and also need to made in order
 
 //    vector<float> getValuesOfFeatures(string feature) const;
 //    float returnVal(int step, string feature);

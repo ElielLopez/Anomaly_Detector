@@ -11,10 +11,11 @@
 #include <math.h>
 
 struct correlatedFeatures{
+    //f1 = "this" most correlated to f2 = "test"
 	string feature1,feature2;  // names of the correlated features
 	float corrlation;
 	Line lin_reg;
-	float threshold;
+	float threshold; // TODO- find the max correlation and determine if independent or not
 };
 
 class SimpleAnomalyDetector:public TimeSeriesAnomalyDetector{
@@ -22,11 +23,20 @@ class SimpleAnomalyDetector:public TimeSeriesAnomalyDetector{
 	vector<correlatedFeatures> cf;
 
 public:
+    /*
+     * float p_threshold, dev_thresh;
+     * SimpleAnomalyDetector()p_threshold(0.9), dev_thresh(0.1){};
+     * SimpleAnomalyDetector(float p_threshold, float dev_thresh(0.1):p_threshold(p_threshold), dev_thresh(dev_thresh){};
+     * */
+
+    float m_threshold;
+    float minimumThreshold; //
+
 	SimpleAnomalyDetector();
 	virtual ~SimpleAnomalyDetector();
 
-	// does not need to be depand on the o
-	// rigin of the information (stream or file...)
+	// does not need to be depand on the
+	// origin of the information (stream or file...)
 	// shlav makdin
 	virtual void learnNormal(const TimeSeries& ts);
 

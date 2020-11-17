@@ -49,7 +49,7 @@ void TimeSeries::saveData(const char *fileName) {
 }
 
 // returning a vector of values of a certain feature.
-vector<float> TimeSeries::getValues(string featureName) {
+vector<float> TimeSeries::getValues(string featureName) const {
 
     vector<float> vec;
     int dataTableSize;
@@ -65,7 +65,7 @@ vector<float> TimeSeries::getValues(string featureName) {
 }
 
 // returning a specific value from a specific map.
-float TimeSeries::getVal(string feature, int index) {
+float TimeSeries::getVal(string feature, int index) const {
 
     float val;
     map<string, float> tmpMap;
@@ -89,7 +89,7 @@ void TimeSeries::insertValuesRow(vector<float> values) {
 }
 
 // return all the features names in a vector
-vector<string> TimeSeries::returnFeaturesNames() {
+vector<string> TimeSeries::returnFeaturesNames()  {
     vector<string> fNames;
     int size;
 
@@ -116,7 +116,7 @@ vector<string> TimeSeries::returnFeaturesNames() {
 //}
 
 // given row- return vector
-vector<float> TimeSeries::returnRow(int step) {
+vector<float> TimeSeries::returnRow(int step) const {
 
     vector<float> row;
    // starting from the row on the table (minus 1 because of features row)
@@ -125,6 +125,8 @@ vector<float> TimeSeries::returnRow(int step) {
     for (auto it2 = it1.begin(); it2 != it1.end(); it2++) {
         row.push_back(it2->second);
     }
+
+
     return row;
 }
 
