@@ -21,6 +21,7 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
     string col1, col2;
     float pearsonCoefficient, maxPearsonCo;
 
+    //TimeSeries::getVal(col1,size);
 
     for (int i = 0; i < size; i++) {
         maxPearsonCo = 0;

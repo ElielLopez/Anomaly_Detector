@@ -26,11 +26,19 @@ public:
         this->fileName = CSVfileName;
         saveData(fileName);
     }
-    void saveData(const char* fileName);
-    void insertValue(vector<float> values);
-    vector<float> getValuesOfFeatures(string feature) const;
+    void saveData(const char* fileName); // Dont change!!
+
+    vector<float> getValues(string featureName);
+    float getVal(string feature, int index);
+
+    void insertValuesRow(vector<float> values); // Dont change!!
+    vector<string> returnFeaturesNames();
+    // TODO create insertFeatureNameIntoData - to insert feature name
+
     vector<float> returnRow(int step);
-    float returnVal(int step, string feature);
+
+//    vector<float> getValuesOfFeatures(string feature) const;
+//    float returnVal(int step, string feature);
 
 
     ~TimeSeries();

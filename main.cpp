@@ -21,17 +21,27 @@ int main(){
     vector<float> testGetValOfFeatures3;
     vector<float> testGetValOfFeatures4;
     vector<float> testGetRow;
-    float testVal;
+    vector<string> namesOfFeatures;
+    float testVal1;
+    float testVal2;
+    float testVal3;
+    float testVal4;
+    float testVal5;
 
     vector<float> v = {5, 46, 3.5, 120.0};
     TimeSeries ts("csvfile.txt");
-    ts.insertValue(v);
-    testGetValOfFeatures1 = ts.getValuesOfFeatures("this");
-    testGetValOfFeatures2 = ts.getValuesOfFeatures("is");
-    testGetValOfFeatures3 = ts.getValuesOfFeatures("a");
-    testGetValOfFeatures4 = ts.getValuesOfFeatures("test");
-    testGetRow = ts.returnRow(3);
-    testVal = ts.returnVal(2,"a");
+    ts.insertValuesRow(v);
+    testGetValOfFeatures1 = ts.getValues("this");
+    testGetValOfFeatures2 = ts.getValues("is");
+    testGetValOfFeatures3 = ts.getValues("a");
+    testGetValOfFeatures4 = ts.getValues("test");
+    testGetRow = ts.returnRow(3); // TODO - fix ,row not in order
+    testVal1 = ts.getVal("a", 0);
+    testVal2 = ts.getVal("a", 1);
+    testVal3 = ts.getVal("a", 2);
+    testVal4 = ts.getVal("a", 3);
+    testVal5 = ts.getVal("a", 4);
+    namesOfFeatures = ts.returnFeaturesNames();
 
     SimpleAnomalyDetector ad;
     ad.learnNormal(ts);

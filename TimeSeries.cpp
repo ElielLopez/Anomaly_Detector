@@ -48,9 +48,36 @@ void TimeSeries::saveData(const char *fileName) {
     myFile.close();
 }
 
-// inserting vector of values into the table acorrding the index.
+// returning a vector of values of a certain feature.
+vector<float> TimeSeries::getValues(string featureName) {
+
+    vector<float> vec;
+    int dataTableSize;
+
+    dataTableSize = data.size();
+
+    for(int i = 0; i < dataTableSize; i++) {
+        //vec.push_back(TimeSeries::getVal(featureName, i));
+        vec.push_back(getVal(featureName, i));
+    }
+
+    return vec;
+}
+
+// returning a specific value from a specific map.
+float TimeSeries::getVal(string feature, int index) {
+
+    float val;
+    map<string, float> tmpMap;
+
+    tmpMap = data[index]; //selecting the relevant map from data table.
+    return tmpMap[feature];
+
+}
+
+// inserting vector of values into the table according the index.
 // example: insert vector {5, 46, 3.5, 120.0} into table.
-void TimeSeries::insertValue(vector<float> values) {
+void TimeSeries::insertValuesRow(vector<float> values) {
     index = 0;
     featuresAndValues fv;
 
@@ -61,19 +88,32 @@ void TimeSeries::insertValue(vector<float> values) {
     data.push_back(fv);
 }
 
+// return all the features names in a vector
+vector<string> TimeSeries::returnFeaturesNames() {
+    vector<string> fNames;
+    int size;
+
+    size = columnFeature.size();
+
+    for(int i = 0; i < size; i++ ) {
+        fNames.push_back(columnFeature[i]);
+    }
+    return fNames;
+}
+
 // returns the vector of values of certain feature.
 //    vector<map<string, float>> data;
 // map<int, string> columnFeature
-vector<float> TimeSeries::getValuesOfFeatures(string feature) const{
-
-    vector<float> valuesVector;
-
-    for(auto iterator = data.begin(); iterator != data.end(); iterator++) {
-        valuesVector.push_back(iterator->at(feature));
-    }
-
-    return valuesVector;
-}
+//vector<float> TimeSeries::getValuesOfFeatures(string feature) const{
+//
+//    vector<float> valuesVector;
+//
+//    for(auto iterator = data.begin(); iterator != data.end(); iterator++) {
+//        valuesVector.push_back(iterator->at(feature));
+//    }
+//
+//    return valuesVector;
+//}
 
 // given row- return vector
 vector<float> TimeSeries::returnRow(int step) {
@@ -89,14 +129,14 @@ vector<float> TimeSeries::returnRow(int step) {
 }
 
 // given row and feature- return the value
-float TimeSeries::returnVal(int step, string feature) {
-    float val;
-    //vector<float> temp1 = returnRow(step);
-    vector<float> temp2 = getValuesOfFeatures(feature);
-
-    val = temp2.at(step -1);
-
-    return val;
-}
+//float TimeSeries::returnVal(int step, string feature) {
+//    float val;
+//    //vector<float> temp1 = returnRow(step);
+//    vector<float> temp2 = getValuesOfFeatures(feature);
+//
+//    val = temp2.at(step -1);
+//
+//    return val;
+//}
 
 TimeSeries::~TimeSeries() {}
