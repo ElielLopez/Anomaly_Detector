@@ -76,13 +76,43 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
             cf.push_back(tmpCF); // inserting into the vector
             //mapOfMaxF.insert(f1,pair<string, float>(maxCorrelatedFeature, maxPearsonCorrelation)); // this, a, 0.84
         }
-
     }
-
-
 }
 
 vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
-	// TODO Auto-generated destructor stub
+
+
+    vector<AnomalyReport> ar;
+    vector<float> tmp1, tmp2;
+    string description, f1, f2;
+    float maximumDev;
+    float deviationOfPoint;
+    int sizeOfCF = cf.size();
+    int sizeOfVector;
+
+
+    for(int i = 0; i < sizeOfCF; i++) {
+        f1 = cf[i].feature1;
+        f2 = cf[i].feature2;
+        Line line = cf[i].lin_reg;
+        maximumDev = cf[i].threshold;
+
+        tmp1 = ts.getValues(f1);
+        tmp2 = ts.getValues(f2);
+        sizeOfVector = tmp1.size();
+
+        for(int j = 0; j < sizeOfVector; j++) {
+            Point p(tmp1[j], tmp2[j]);
+            deviationOfPoint = dev(p, line);
+
+            if(maximumDev < deviationOfPoint) {
+                description = f1 + "-" + f2;
+                ar.push_back(AnomalyReport(description, j + 1));
+            }
+        }
+        maximumDev = maximumDeviation(&tmp1[0], &tmp2[0], sizeOfVector, line);
+    }
+
+    return ar;
 }
 

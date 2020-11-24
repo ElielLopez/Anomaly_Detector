@@ -23,14 +23,9 @@ class SimpleAnomalyDetector:public TimeSeriesAnomalyDetector{
 	vector<correlatedFeatures> cf;
 
 public:
-    /*
-     * float p_threshold, dev_thresh;
-     * SimpleAnomalyDetector()p_threshold(0.9), dev_thresh(0.1){};
-     * SimpleAnomalyDetector(float p_threshold, float dev_thresh(0.1):p_threshold(p_threshold), dev_thresh(dev_thresh){};
-     * */
 
     float m_threshold;
-    float minimumThreshold; //
+    float minimumThreshold;
 
 	//SimpleAnomalyDetector();
 	SimpleAnomalyDetector() {

@@ -162,11 +162,12 @@ float dev(Point p,Line l){
 
 float maximumDeviation(float* x, float* y, int size, Line l) {
     float max = 0;
-    float dev = 0;
+    float deviation = 0;
     //Point p(0,0);
     for(int i = 0; i < size; i++) {
         Point p(x[i], y[i]);
-        if (max < dev) max = dev;
+        deviation = dev(p, l);
+        if (max < deviation) max = deviation;
     }
     return max;
 }
