@@ -1,5 +1,8 @@
 #include <map>
 #include <vector>
+#include <iostream>
+#include <sstream>
+#include <fstream>
 
 #ifndef TIMESERIES_H_
 #define TIMESERIES_H_

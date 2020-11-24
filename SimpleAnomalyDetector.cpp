@@ -1,14 +1,10 @@
 
 #include "SimpleAnomalyDetector.h"
-#include "TimeSeries.h"
-#include "TimeSeries.cpp"
-#include "anomaly_detection_util.h"
-#include "anomaly_detection_util.cpp"
 
-SimpleAnomalyDetector::SimpleAnomalyDetector() {
-	// TODO Auto-generated constructor stub
-
-}
+//SimpleAnomalyDetector::SimpleAnomalyDetector() {
+//	// TODO Auto-generated constructor stub
+//
+//}
 
 SimpleAnomalyDetector::~SimpleAnomalyDetector() {
 	// TODO Auto-generated destructor stub
@@ -19,12 +15,15 @@ SimpleAnomalyDetector::~SimpleAnomalyDetector() {
 // "is" most correlated to "a".
 void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
 
+    Line linearRegression;
     vector<float> tmp1, tmp2;
+    //map<string,pair< string, float>> mapOfMaxF;
     string f1, f2;
     string maxCorrelatedFeature;
     float pearsonCorrelation;
     float maxPearsonCorrelation;
-    int sizeOfDataTable = ts.data.size();
+    float maxDeviation;
+    int sizeOfDataTable = ts.columnFeature.size(); //ts.data.size();
     int sizeOfVector = 0;
     int maxCorrelatedFeatureIndex = 0;
 
@@ -42,6 +41,11 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
             f2 = ts.columnFeature.at(j); // "is"
             tmp2 = ts.getValues(f2);
 
+            // creating Point** for linear regression
+            Point* ps[sizeOfVector];
+            for(int i=0;i<sizeOfVector;i++)
+                ps[i]=new Point(tmp1[i],tmp2[i]);
+
             // correlation between "this" and "is"
             // computing the correlation between two features.
             pearsonCorrelation = pearson(&tmp1[0], &tmp2[0], sizeOfVector);
@@ -51,6 +55,10 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
             if(maxPearsonCorrelation < pearsonCorrelation) {
                 maxPearsonCorrelation = pearsonCorrelation;
                 maxCorrelatedFeatureIndex = j;
+
+                // calculating the line with linear regression from previous ex.
+                linearRegression = linear_reg(ps, sizeOfVector);
+                maxDeviation = maximumDeviation(&tmp1[0], &tmp2[0], sizeOfVector, linearRegression);
             }
             // save the feature name
             maxCorrelatedFeature = ts.columnFeature.at(maxCorrelatedFeatureIndex); // "test"
@@ -61,11 +69,12 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
         if(m_threshold < maxPearsonCorrelation) {
             correlatedFeatures tmpCF;
             tmpCF.feature1 = f1;
-            tmpCF.feature1 = maxCorrelatedFeature;
+            tmpCF.feature2 = maxCorrelatedFeature;
             tmpCF.corrlation = maxPearsonCorrelation;
             //tmpCF.threshold = ...
             //tmpCF.lin_reg = ...
             cf.push_back(tmpCF); // inserting into the vector
+            //mapOfMaxF.insert(f1,pair<string, float>(maxCorrelatedFeature, maxPearsonCorrelation)); // this, a, 0.84
         }
     }
 

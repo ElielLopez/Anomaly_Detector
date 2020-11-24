@@ -1,7 +1,4 @@
 #include "TimeSeries.h"
-#include <iostream>
-#include <sstream>
-#include <fstream>
 
 using namespace std;
 

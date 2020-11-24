@@ -32,7 +32,11 @@ public:
     float m_threshold;
     float minimumThreshold; //
 
-	SimpleAnomalyDetector();
+	//SimpleAnomalyDetector();
+	SimpleAnomalyDetector() {
+	    m_threshold = 0.9, minimumThreshold = 0.1;
+	}
+	// TODO create constructor that receive arg
 	virtual ~SimpleAnomalyDetector();
 
 	// does not need to be depand on the
