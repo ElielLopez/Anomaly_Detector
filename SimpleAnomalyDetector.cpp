@@ -1,10 +1,10 @@
 
 #include "SimpleAnomalyDetector.h"
 
-//SimpleAnomalyDetector::SimpleAnomalyDetector() {
-//	// TODO Auto-generated constructor stub
-//
-//}
+SimpleAnomalyDetector::SimpleAnomalyDetector() {
+	// TODO Auto-generated constructor stub
+
+}
 
 SimpleAnomalyDetector::~SimpleAnomalyDetector() {
 	// TODO Auto-generated destructor stub
