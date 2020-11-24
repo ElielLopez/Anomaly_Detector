@@ -1,10 +1,10 @@
 
 #include "SimpleAnomalyDetector.h"
 
-SimpleAnomalyDetector::SimpleAnomalyDetector() {
-	// TODO Auto-generated constructor stub
-
-}
+//SimpleAnomalyDetector::SimpleAnomalyDetector() {
+//	// TODO Auto-generated constructor stub
+//
+//}
 
 SimpleAnomalyDetector::~SimpleAnomalyDetector() {
 	// TODO Auto-generated destructor stub
@@ -71,11 +71,12 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
             tmpCF.feature1 = f1;
             tmpCF.feature2 = maxCorrelatedFeature;
             tmpCF.corrlation = maxPearsonCorrelation;
-            //tmpCF.threshold = ...
-            //tmpCF.lin_reg = ...
+            tmpCF.threshold = maxDeviation * (1 + minimumThreshold);
+            tmpCF.lin_reg = linearRegression;
             cf.push_back(tmpCF); // inserting into the vector
             //mapOfMaxF.insert(f1,pair<string, float>(maxCorrelatedFeature, maxPearsonCorrelation)); // this, a, 0.84
         }
+
     }
 
 
