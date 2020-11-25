@@ -160,6 +160,9 @@ float dev(Point p,Line l){
     return deviation;
 }
 
+// returns the maximum deviation. this function was added to help in
+// learnNormal and detect functions.
+// given a 2 arrays of floats, calculating the deviation of point and saves the maximum value.
 float maximumDeviation(float* x, float* y, int size, Line l) {
     float max = 0;
     float deviation = 0;

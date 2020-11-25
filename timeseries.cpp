@@ -1,7 +1,8 @@
-#include "TimeSeries.h"
+#include "timeseries.h"
 
 using namespace std;
 
+// saveData reads a csv file and saving the features names and their values.
 void TimeSeries::saveData(const char *fileName) {
 
     index = 0;
@@ -45,35 +46,7 @@ void TimeSeries::saveData(const char *fileName) {
     myFile.close();
 }
 
-// returning a vector of values of a certain feature.
-//vector<float> TimeSeries::getValues(string featureName) const {
-//
-//    vector<float> vec;
-//    int dataTableSize;
-//
-//    dataTableSize = data.size();
-//
-//    for(int i = 0; i < dataTableSize; i++) {
-//        //vec.push_back(TimeSeries::getVal(featureName, i));
-//        vec.push_back(getVal(featureName, i));
-//    }
-//
-//    return vec;
-//}
-
-// returning a specific value from a specific map.
-float TimeSeries::getVal(string feature, int index) const {
-
-    float val;
-    map<string, float> tmpMap;
-
-    tmpMap = data[index]; //selecting the relevant map from data table.
-    return tmpMap[feature];
-
-}
-
 // inserting vector of values into the table according the index.
-// example: insert vector {5, 46, 3.5, 120.0} into table.
 void TimeSeries::insertValuesRow(vector<float> values) {
     index = 0;
     featuresAndValues fv;
@@ -85,7 +58,7 @@ void TimeSeries::insertValuesRow(vector<float> values) {
     data.push_back(fv);
 }
 
-// return all the features names in a vector
+// return all the features names in a vector.
 vector<string> TimeSeries::returnFeaturesNames()  {
     vector<string> fNames;
     int size;
@@ -120,7 +93,6 @@ vector<float> TimeSeries::returnRow(int step) const {
     for (auto it2 = it1.begin(); it2 != it1.end(); it2++) {
         row.push_back(it2->second);
     }
-
 
     return row;
 }

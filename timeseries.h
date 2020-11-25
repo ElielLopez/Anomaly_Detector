@@ -33,7 +33,7 @@ public:
     void saveData(const char* fileName);
 
     vector<float> getValues(string featureName) const;
-    float getVal(string feature, int index) const;
+    //float getVal(string feature, int index) const;
     void insertValuesRow(vector<float> values);
     vector<string> returnFeaturesNames() ;
     // TODO create insertFeatureNameIntoData - to insert feature name
