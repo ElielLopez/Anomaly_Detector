@@ -46,20 +46,20 @@ void TimeSeries::saveData(const char *fileName) {
 }
 
 // returning a vector of values of a certain feature.
-vector<float> TimeSeries::getValues(string featureName) const {
-
-    vector<float> vec;
-    int dataTableSize;
-
-    dataTableSize = data.size();
-
-    for(int i = 0; i < dataTableSize; i++) {
-        //vec.push_back(TimeSeries::getVal(featureName, i));
-        vec.push_back(getVal(featureName, i));
-    }
-
-    return vec;
-}
+//vector<float> TimeSeries::getValues(string featureName) const {
+//
+//    vector<float> vec;
+//    int dataTableSize;
+//
+//    dataTableSize = data.size();
+//
+//    for(int i = 0; i < dataTableSize; i++) {
+//        //vec.push_back(TimeSeries::getVal(featureName, i));
+//        vec.push_back(getVal(featureName, i));
+//    }
+//
+//    return vec;
+//}
 
 // returning a specific value from a specific map.
 float TimeSeries::getVal(string feature, int index) const {
@@ -98,19 +98,17 @@ vector<string> TimeSeries::returnFeaturesNames()  {
     return fNames;
 }
 
-// returns the vector of values of certain feature.
-//    vector<map<string, float>> data;
-// map<int, string> columnFeature
-//vector<float> TimeSeries::getValuesOfFeatures(string feature) const{
-//
-//    vector<float> valuesVector;
-//
-//    for(auto iterator = data.begin(); iterator != data.end(); iterator++) {
-//        valuesVector.push_back(iterator->at(feature));
-//    }
-//
-//    return valuesVector;
-//}
+//returns the vector of values of certain feature.
+vector<float> TimeSeries::getValues(string feature) const{
+
+    vector<float> valuesVector;
+
+    for(auto iterator = data.begin(); iterator != data.end(); iterator++) {
+        valuesVector.push_back(iterator->at(feature));
+    }
+
+    return valuesVector;
+}
 
 // given row- return vector
 vector<float> TimeSeries::returnRow(int step) const {

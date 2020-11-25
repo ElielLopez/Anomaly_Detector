@@ -30,18 +30,16 @@ public:
         this->fileName = CSVfileName;
         saveData(fileName);
     }
-    void saveData(const char* fileName); // Dont change!!
+    void saveData(const char* fileName);
 
     vector<float> getValues(string featureName) const;
     float getVal(string feature, int index) const;
-    void insertValuesRow(vector<float> values); // Dont change!!
+    void insertValuesRow(vector<float> values);
     vector<string> returnFeaturesNames() ;
     // TODO create insertFeatureNameIntoData - to insert feature name
-    vector<float> returnRow(int step) const; // TODO- not sure what for and also need to made in order
 
-//    vector<float> getValuesOfFeatures(string feature) const;
-//    float returnVal(int step, string feature);
-
+    // TODO- not sure what for and also need to made in order
+    vector<float> returnRow(int step) const;
 
     ~TimeSeries();
 };
