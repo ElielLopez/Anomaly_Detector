@@ -34,14 +34,10 @@ public:
 	// TODO create constructor that receive arg
 	virtual ~SimpleAnomalyDetector();
 
-	// does not need to be depand on the
-	// origin of the information (stream or file...)
-	// shlav makdin
+	// does not need to be depend on the origin of the information (stream or file...)
 	virtual void learnNormal(const TimeSeries& ts);
 
-	// return list of reports.
-	// every anomaly report has description and time stamp (nekudat zman)
-	//giloy harigot
+	// return list of reports. every anomaly report has description and time stamp (nekudat zman)
 	virtual vector<AnomalyReport> detect(const TimeSeries& ts);
 
 	// returns list of correlated features.

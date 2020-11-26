@@ -36,15 +36,6 @@ public:
     // return a vector of values of a certain feature.
     vector<float> getValues(string featureName) const;
 
-    // insert row of values into the data table.
-    void insertValuesRow(vector<float> values);
-
-    // return the features names from the csv file.
-    vector<string> returnFeaturesNames() ;
-
-    // returns a row of values given a step. this function is not in use in this particular run.
-    vector<float> returnRow(int step) const;
-
     ~TimeSeries();
 };
 

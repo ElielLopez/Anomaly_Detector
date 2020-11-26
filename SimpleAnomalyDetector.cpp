@@ -1,8 +1,11 @@
+/*
+ * SimpleAnomalyDetector.cpp
+ *
+ * Author: 309288777 Eliel Lopez
+ */
 
 #include "SimpleAnomalyDetector.h"
 
-//SimpleAnomalyDetector::SimpleAnomalyDetector() {
-//}
 
 SimpleAnomalyDetector::~SimpleAnomalyDetector() {
 	// TODO Auto-generated destructor stub
@@ -14,7 +17,6 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
 
     Line linearRegression;
     vector<float> tmp1, tmp2;
-    //map<string,pair< string, float>> mapOfMaxF;
     string f1, f2;
     string maxCorrelatedFeature;
     float pearsonCorrelation;
@@ -70,7 +72,6 @@ void SimpleAnomalyDetector::learnNormal(const TimeSeries& ts){
             tmpCF.threshold = maxDeviation * (1 + minimumThreshold);
             tmpCF.lin_reg = linearRegression;
             cf.push_back(tmpCF); // inserting into the returned vector
-            //mapOfMaxF.insert(f1,pair<string, float>(maxCorrelatedFeature, maxPearsonCorrelation)); // this, a, 0.84
         }
     }
 }
@@ -84,22 +85,19 @@ vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
     string description, f1, f2;
     float maximumDev;
     float deviationOfPoint;
-    int sizeOfCF = cf.size();
     int sizeOfVector;
 
-    // for every element in cf- calculate his deviation of each point with two vectors.
-    for(int i = 0; i < sizeOfCF; i++) {
-        f1 = cf[i].feature1;
-        f2 = cf[i].feature2;
-        Line line = cf[i].lin_reg;
-        maximumDev = cf[i].threshold;
 
-        // saving the relevant values.
+    for(auto it = cf.begin(); it != cf.end(); it++) {
+        f1 = it->feature1;
+        f2 = it->feature2;
+        Line line = it->lin_reg;
+        maximumDev = it->threshold;
+
         tmp1 = ts.getValues(f1);
         tmp2 = ts.getValues(f2);
         sizeOfVector = tmp1.size();
 
-        // for every point- save its deviation. if the deviation is unusual report it.
         for(int j = 0; j < sizeOfVector; j++) {
             Point p(tmp1[j], tmp2[j]);
             deviationOfPoint = dev(p, line);
@@ -109,7 +107,6 @@ vector<AnomalyReport> SimpleAnomalyDetector::detect(const TimeSeries& ts){
                 ar.push_back(AnomalyReport(description, j + 1));
             }
         }
-        //maximumDev = maximumDeviation(&tmp1[0], &tmp2[0], sizeOfVector, line);
     }
 
     return ar;
