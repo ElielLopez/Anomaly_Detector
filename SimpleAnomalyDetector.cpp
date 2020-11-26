@@ -6,7 +6,7 @@
 
 #include "SimpleAnomalyDetector.h"
 
-
+// destructor.
 SimpleAnomalyDetector::~SimpleAnomalyDetector() {
 	// TODO Auto-generated destructor stub
 }

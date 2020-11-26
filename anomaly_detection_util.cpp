@@ -173,3 +173,5 @@ float maximumDeviation(float* x, float* y, int size, Line l) {
     }
     return max;
 }
+
+// submit

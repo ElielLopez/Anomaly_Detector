@@ -11,11 +11,10 @@
 #include <math.h>
 
 struct correlatedFeatures{
-    //f1 = "this" most correlated to f2 = "test"
 	string feature1,feature2;  // names of the correlated features
 	float corrlation;
 	Line lin_reg;
-	float threshold; // TODO- find the max correlation and determine if independent or not
+	float threshold;
 };
 
 class SimpleAnomalyDetector:public TimeSeriesAnomalyDetector{
@@ -31,7 +30,7 @@ public:
 	SimpleAnomalyDetector() {
 	    m_threshold = 0.9, minimumThreshold = 0.1;
 	}
-	// TODO create constructor that receive arg
+    // destructor.
 	virtual ~SimpleAnomalyDetector();
 
 	// does not need to be depend on the origin of the information (stream or file...)

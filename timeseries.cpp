@@ -64,4 +64,5 @@ vector<float> TimeSeries::getValues(string feature) const{
     return valuesVector;
 }
 
+// destructor.
 TimeSeries::~TimeSeries() {}

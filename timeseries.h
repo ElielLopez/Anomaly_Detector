@@ -36,6 +36,7 @@ public:
     // return a vector of values of a certain feature.
     vector<float> getValues(string featureName) const;
 
+    // destructor.
     ~TimeSeries();
 };
 
