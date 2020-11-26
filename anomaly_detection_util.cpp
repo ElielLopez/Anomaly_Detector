@@ -1,8 +1,3 @@
-/*
- * anomaly_detection_util.cpp
- *
- * Author: 309288777 Eliel Lopez
- */
 
 #include <math.h>
 #include "anomaly_detection_util.h"

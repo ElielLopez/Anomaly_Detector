@@ -1,8 +1,3 @@
-/*
- * timeseries.cpp
- *
- * Author: 309288777 Eliel Lopez
- */
 
 #include "timeseries.h"
 
