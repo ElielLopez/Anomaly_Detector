@@ -15,7 +15,6 @@ typedef map<string, float> featuresAndValues;
 class TimeSeries {
 
 private:
-
     const char* fileName;
     string line, colName, token;
     int index;
@@ -30,15 +29,20 @@ public:
         this->fileName = CSVfileName;
         saveData(fileName);
     }
+
+    // saves the data from the csv file.
     void saveData(const char* fileName);
 
+    // return a vector of values of a certain feature.
     vector<float> getValues(string featureName) const;
-    //float getVal(string feature, int index) const;
-    void insertValuesRow(vector<float> values);
-    vector<string> returnFeaturesNames() ;
-    // TODO create insertFeatureNameIntoData - to insert feature name
 
-    // TODO- not sure what for and also need to made in order
+    // insert row of values into the data table.
+    void insertValuesRow(vector<float> values);
+
+    // return the features names from the csv file.
+    vector<string> returnFeaturesNames() ;
+
+    // returns a row of values given a step. this function is not in use in this particular run.
     vector<float> returnRow(int step) const;
 
     ~TimeSeries();

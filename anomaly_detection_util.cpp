@@ -71,7 +71,6 @@ float cov(float* x, float* y, int size){
     return covariance;
 }
 
-
 // returns the Pearson correlation coefficient of X and Y.
 // calculates the covariance of X and Y and then the deviation of X and deviation of Y by applying square root on var.
 float pearson(float* x, float* y, int size){
@@ -174,8 +173,3 @@ float maximumDeviation(float* x, float* y, int size, Line l) {
     }
     return max;
 }
-
-
-
-
-
